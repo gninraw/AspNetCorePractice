@@ -10,17 +10,9 @@ namespace Sample1.Controller
     [Route("api/cities")]
     public class PointOfInterestController : Microsoft.AspNetCore.Mvc.Controller
     {
-        [HttpGet("{id}/pointofinterest")]
-        public IActionResult GetPointsOfInterest(int id)
-        {
-            var cities = CitiesStore.Instance.Cities;
+       
 
-            var city = cities.FirstOrDefault(c => c.Id == id);
-
-            return Ok(city.PointsOfInterest);
-        }
-
-        [HttpGet("{cityid}/pointofinterest/{pointid}")]
+        [HttpGet("{cityid}/pointofinterest/{pointid}",Name = "GetPointsOfInterest")]
         public IActionResult GetPointsOfInterest(int cityid, int pointid)
         {
             var cities = CitiesStore.Instance.Cities;
@@ -32,34 +24,52 @@ namespace Sample1.Controller
             return Ok(point);
         }
 
-        [HttpPost("{cityid}/pointofinterest")]
-        public IActionResult CreatePointOfInterest(int cityid,
-            [FromBody]PorintOfInterestForCreate pointofinterest)
+        [HttpDelete("{cityid}/pointofinterest/{pointid}")]
+        public IActionResult DeletePointOfInterest(int cityid, int pointid)
         {
-            //string result = $@"[ Name = { data.Name },Desc= { data.Description} ] ";
+            CityDto city = CitiesStore.Instance.Cities.FirstOrDefault(c => c.Id == cityid);
+            PointOfInterestDto point = city.PointsOfInterest.FirstOrDefault(p => p.Id == pointid);
 
-            if (pointofinterest == null) return BadRequest();
+            if (point == null) return NotFound();
 
-            List<CityDto> cities = CitiesStore.Instance.Cities;
+            city.PointsOfInterest.Remove(point);
 
-            CityDto city = null;
+            return NoContent();
+        }
 
-            foreach (var c in cities)
+        [HttpGet("{cityid}/pointofinterest")]
+        public IActionResult GetPointsOfInterest(int cityid)
+        {
+            var cities = CitiesStore.Instance.Cities;
+
+            var city = cities.FirstOrDefault(c => c.Id == cityid);
+
+            return Ok(city.PointsOfInterest);
+        }
+
+        [HttpPost("{cityid}/pointofinterest")]
+        public IActionResult CreatePointOfInterest(int cityid, [FromBody]PorintOfInterestForCreate pointofinterest)
+        {
+            #region 
+            if (pointofinterest == null)
             {
-                if (c.Id == cityid) city = c;
+                return BadRequest("Input Data is Null");
             }
 
-            if (city == null) return NotFound();
-
-
-            var points = city.PointsOfInterest;
-
-            int maxId = 0;
-
-            foreach (var p in points)
+            if(!ModelState.IsValid)
             {
-                if (p.Id > maxId) maxId = p.Id;
+                return BadRequest(ModelState);
             }
+
+            CityDto city = CitiesStore.Instance.Cities
+                                      .FirstOrDefault(c => c.Id == cityid);
+
+            if (city == null)
+            {
+                return NotFound();
+            }
+
+            int maxId = city.PointsOfInterest.Max(p => p.Id);
 
             var createdPointOfInterest = new PointOfInterestDto()
             {
@@ -68,11 +78,16 @@ namespace Sample1.Controller
                 Description = pointofinterest.Description
             };
 
-            points.Add(createdPointOfInterest);
+            city.PointsOfInterest.Add(createdPointOfInterest);
+            //return Ok();
+            #endregion
+            return CreatedAtRoute("GetPointsOfInterest",
+                                  new { cityid = cityid, pointid = createdPointOfInterest.Id },
+                                  createdPointOfInterest);
 
-            return Ok();
+
         }
 
-
+        
     }
 }
