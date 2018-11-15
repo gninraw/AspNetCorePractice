@@ -1,0 +1,14 @@
+c:\users\a312\documents\visual studio 2017\Projects\Sample1\Sample1\bin\Debug\netcoreapp2.1\Sample1.deps.json
+c:\users\a312\documents\visual studio 2017\Projects\Sample1\Sample1\bin\Debug\netcoreapp2.1\Sample1.runtimeconfig.json
+c:\users\a312\documents\visual studio 2017\Projects\Sample1\Sample1\bin\Debug\netcoreapp2.1\Sample1.runtimeconfig.dev.json
+c:\users\a312\documents\visual studio 2017\Projects\Sample1\Sample1\bin\Debug\netcoreapp2.1\Sample1.dll
+c:\users\a312\documents\visual studio 2017\Projects\Sample1\Sample1\bin\Debug\netcoreapp2.1\Sample1.pdb
+c:\users\a312\documents\visual studio 2017\Projects\Sample1\Sample1\obj\Debug\netcoreapp2.1\Sample1.csproj.CoreCompileInputs.cache
+c:\users\a312\documents\visual studio 2017\Projects\Sample1\Sample1\obj\Debug\netcoreapp2.1\Sample1.RazorAssemblyInfo.cache
+c:\users\a312\documents\visual studio 2017\Projects\Sample1\Sample1\obj\Debug\netcoreapp2.1\Sample1.RazorAssemblyInfo.cs
+c:\users\a312\documents\visual studio 2017\Projects\Sample1\Sample1\obj\Debug\netcoreapp2.1\Sample1.AssemblyInfoInputs.cache
+c:\users\a312\documents\visual studio 2017\Projects\Sample1\Sample1\obj\Debug\netcoreapp2.1\Sample1.AssemblyInfo.cs
+c:\users\a312\documents\visual studio 2017\Projects\Sample1\Sample1\obj\Debug\netcoreapp2.1\Sample1.RazorTargetAssemblyInfo.cache
+c:\users\a312\documents\visual studio 2017\Projects\Sample1\Sample1\obj\Debug\netcoreapp2.1\Sample1.dll
+c:\users\a312\documents\visual studio 2017\Projects\Sample1\Sample1\obj\Debug\netcoreapp2.1\Sample1.pdb
+C:\Users\A312\documents\visual studio 2017\Projects\Sample1\Sample1\obj\Debug\netcoreapp2.1\Sample1.csprojAssemblyReference.cache
